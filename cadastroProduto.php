@@ -1,6 +1,6 @@
 <?php 
 
-function cadastraProduto($nomeProduto, $categoriaProduto, $precoProduto, $descProduto,  $imgProduto){
+function cadastraProduto($nomeProduto, $categoriaProduto, $precoProduto, $descProduto, $quantidadeProduto,  $imgProduto){
     $nomeArquivo = "produto.json";
 
     if(file_exists($nomeArquivo)){
@@ -9,7 +9,7 @@ function cadastraProduto($nomeProduto, $categoriaProduto, $precoProduto, $descPr
         //transformar json em array
         $produtos = json_decode($arquivo, true);
         //adicionando um novo produto na array
-        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
+        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "quantidade"=>$quantidadeProduto, "imgProduto"=>$imgProduto];
         $json = json_encode($produtos);
         //salvando o json dentro de um arquivo;
         $deuCerto = file_put_contents($nomeArquivo, $json);
@@ -23,7 +23,7 @@ function cadastraProduto($nomeProduto, $categoriaProduto, $precoProduto, $descPr
     }else {
         $produtos = [];
         //array_push
-        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
+        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "quantidade"=>$quantidadeProduto, "imgProduto"=>$imgProduto];
         //transformando array em json
         $json = json_encode($produtos);
         //salvando o json dentro de um arquivo
@@ -48,7 +48,7 @@ if($_POST){
     
     
     $deuCerto = move_uploaded_file($localTmp, $caminhoSalvo);
-    echo cadastraProduto($_POST['nomeProduto'], $_POST['categoriaProduto'], $_POST['precoProduto'], $_POST['descProduto'], $caminhoSalvo);
+    echo cadastraProduto($_POST['nomeProduto'], $_POST['categoriaProduto'], $_POST['precoProduto'], $_POST['descProduto'], $_POST['quantidadeProduto'], $caminhoSalvo);
 }
 
 ?>
@@ -77,8 +77,8 @@ if($_POST){
                         <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do Produto "/>
                     </div>
                     <div class="form-group">
-                        <label for="categoriaProduto" name="categoriaProduto">Categoria:</label>
-                            <select class="form-control" id="sel1">
+                        <label for="categoriaProduto" >Categoria:</label>
+                            <select class="form-control" id="categoriaProduto" name="categoriaProduto">
                                 <option value selected disabled>Selecione</option>
                                 <option>Casmisas</option>
                                 <option>Babylook</option>
@@ -86,6 +86,9 @@ if($_POST){
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="descProduto" placeholder="Descrição do Produto "/>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="quantidadeProduto" placeholder="Quantidade "/>
                     </div>
                     <div class="form-group">
                         <input type="file" class="form-control" name="imgProduto" placeholder="Imagem do Produto "/>

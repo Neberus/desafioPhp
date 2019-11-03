@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>Document</title>
 </head>
 
@@ -24,8 +26,10 @@
                         <h2><?php echo $produto['nome']; ?></h2>
                         <img src="<?php echo $produto['imgProduto']; ?>" class="card-img-top" alt="...">
                         <div class="card-body"> 
-                            <h5 class="card-title"><?php echo $produto['preco']; ?></h5>
-                            <p class="card-text"><?php echo $produto['desc']; ?></p>
+                            <h5 class="card-title">Preço: R$<?php echo $produto['preco']; ?></h5>
+                            <p class="card-text">Categoria:<?php echo $produto['categoria']; ?></p>
+                            <p class="card-text">Descrição:<?php echo $produto['desc']; ?></p>
+                            <p class="card-text">Quantidade:<?php echo $produto['quantidade']; ?></p>
                             <a href="?nomeProduto=<?php echo $produto['nome']; ?>" class="btn btn-primary">Comprar</a>
                         </div>
                     </div>
