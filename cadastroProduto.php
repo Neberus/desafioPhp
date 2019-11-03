@@ -75,7 +75,11 @@ if($_POST){
                         <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do Produto "/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="categoriaProduto" placeholder="Categoria do Produto "/>
+                        <label for="sel1">Categoria:</label>
+                            <select class="form-control" id="sel1">
+                                <option>Casmisas</option>
+                                <option>Babylook</option>
+                            </select>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="descProduto" placeholder="Descrição do Produto "/>

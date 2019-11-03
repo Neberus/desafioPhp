@@ -12,7 +12,6 @@
 
 <body>
 
-    <?php include_once("header.php") ?>
     <main>
         <section class="container mt-4">
             <div class="row justify-content-around">
