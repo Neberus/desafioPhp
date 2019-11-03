@@ -12,6 +12,8 @@
 
 <body>
 
+    
+    <?php include_once("config/validacoes.php") ?>
     <main>
         <section class="container mt-4">
             <div class="row justify-content-around">
@@ -21,9 +23,10 @@
                     <div class="col-lg-3 card text-center">
                         <h2><?php echo $produto['nome']; ?></h2>
                         <img src="<?php echo $produto['imgProduto']; ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
+                        <div class="card-body"> 
                             <h5 class="card-title"><?php echo $produto['preco']; ?></h5>
-                            <a href="carrinho.php?nomeProduto=<?php echo $produto['nome']; ?>" class="btn btn-primary">Comprar</a>
+                            <p class="card-text"><?php echo $produto['desc']; ?></p>
+                            <a href="?nomeProduto=<?php echo $produto['nome']; ?>" class="btn btn-primary">Comprar</a>
                         </div>
                     </div>
 

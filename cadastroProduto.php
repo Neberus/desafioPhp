@@ -1,6 +1,6 @@
 <?php 
 
-function cadastraProduto($nomeProduto, $precoProduto, $descProduto,  $imgProduto){
+function cadastraProduto($nomeProduto, $categoriaProduto, $precoProduto, $descProduto,  $imgProduto){
     $nomeArquivo = "produto.json";
 
     if(file_exists($nomeArquivo)){
@@ -9,7 +9,7 @@ function cadastraProduto($nomeProduto, $precoProduto, $descProduto,  $imgProduto
         //transformar json em array
         $produtos = json_decode($arquivo, true);
         //adicionando um novo produto na array
-        $produtos[] = ["nome"=>$nomeProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
+        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
         $json = json_encode($produtos);
         //salvando o json dentro de um arquivo;
         $deuCerto = file_put_contents($nomeArquivo, $json);
@@ -23,7 +23,7 @@ function cadastraProduto($nomeProduto, $precoProduto, $descProduto,  $imgProduto
     }else {
         $produtos = [];
         //array_push
-        $produtos[] = ["nome"=>$nomeProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
+        $produtos[] = ["nome"=>$nomeProduto, "categoria"=>$categoriaProduto, "preco"=>$precoProduto, "desc"=>$descProduto, "imgProduto"=>$imgProduto];
         //transformando array em json
         $json = json_encode($produtos);
         //salvando o json dentro de um arquivo
@@ -48,7 +48,7 @@ if($_POST){
     
     
     $deuCerto = move_uploaded_file($localTmp, $caminhoSalvo);
-    echo cadastraProduto($_POST['nomeProduto'], $_POST['precoProduto'], $_POST['descProduto'], $caminhoSalvo);
+    echo cadastraProduto($_POST['nomeProduto'], $_POST['categoriaProduto'], $_POST['precoProduto'], $_POST['descProduto'], $caminhoSalvo);
 }
 
 ?>
@@ -64,6 +64,8 @@ if($_POST){
     <title>Cadastro Produto</title>
 </head>
 <body>
+
+    <?php include_once("config/validacoes.php") ?>
     <main class="container">
         <div class="row">
             <div class="col-12">
@@ -75,8 +77,9 @@ if($_POST){
                         <input type="text" class="form-control" name="nomeProduto" placeholder="Nome do Produto "/>
                     </div>
                     <div class="form-group">
-                        <label for="sel1">Categoria:</label>
+                        <label for="categoriaProduto" name="categoriaProduto">Categoria:</label>
                             <select class="form-control" id="sel1">
+                                <option value selected disabled>Selecione</option>
                                 <option>Casmisas</option>
                                 <option>Babylook</option>
                             </select>
